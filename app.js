@@ -4,6 +4,8 @@ var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json(),bodyParser.urlencoded({ extended: true }));
 
+var fs = require('fs');
+
 // app.get('/', function (req, res) {
 //   res.send('Hello World!');
 // });
@@ -13,6 +15,20 @@ app.use(bodyParser.json(),bodyParser.urlencoded({ extended: true }));
 
 var db = require('./db');
 
+app.get('/', function (req, res, next)
+{
+    fs.readFile('./index.html', null, function(error, data){
+        if (error)
+            res.status(404).Send('You\'re file was not found!');
+        else
+            {
+                res.contentType('text/html').send(data);
+            }
+    }); 
+});
+
+//depricated ... no need for the ui anymore :-)
+/*
 app.get('', function (req, res) {
      res.send(GetPageDefinition());
    });
@@ -21,6 +37,7 @@ app.get('', function (req, res) {
 {
     db.getAllDocuments(req, res, next);
 });
+*/
 
 /* app.post('/getdb',function (req, res, next)
 {
