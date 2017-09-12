@@ -1,6 +1,8 @@
 // ADD THIS PART TO YOUR CODE
 "use strict";
 
+var Enumerable = require('./node_modules/linq');
+
 var endpoint = "https://demianiot-docdb.documents.azure.com:443/";
 var primaryKey = "AaYitd6nDmpgcBfVFd96U4PTdaLGorzziNfLtJwjrtjNgZuoabTCIskKO3eJ9tthxIX5PIMsMP2hEuteXcwZ0w==";
 var collection = "NodeTutorial_Users";
@@ -133,7 +135,7 @@ var collectionUrl = `${databaseUrl}/colls/${collection}`;
                 else 
                 {
                     console.log(`found ${resList.length} user records`);
-                    res.json(resList);
+                    res.json(Enumerable.from(resList).select((x,y) => x.user).toArray());
                 }
             });
         });
