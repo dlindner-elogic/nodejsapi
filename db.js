@@ -141,6 +141,36 @@ var collectionUrl = `${databaseUrl}/colls/${collection}`;
         });
     };
 
+    exports.deleteDocument =  function (req, res, next) 
+    {
+        var docId = req.body.tbDocumentName;
+
+        let documentUrl = `${collectionUrl}/docs/${docId}`;
+        
+        console.log(`Deleting document ${docId} from:\n${collectionUrl}\n`);
+
+        return new Promise((resolve, reject) => 
+        {
+            
+
+            new Promise((resolve, reject) =>
+            {
+                client.deleteDocument(documentUrl, {  }, (err, result) => 
+               {
+                   if (err) 
+                   {
+                        reject(JSON.stringify(err));
+                   }
+                   else 
+                   {
+                        console.log( "delete successful" );
+                        resolve(JSON.stringify('delete successful'));
+                   }
+               });
+           }).then(value => mycallback(req, res, next, value))
+           .catch(err => res.send(err));
+        });
+    };
   /*   createCollection(collectionName)
     {
         if (collectionName == null || collectionName == '')

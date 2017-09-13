@@ -71,6 +71,11 @@ app.post('/setDocument', function (req, res, next)
     db.setUserDocument(req, res);
 });
 
+app.delete('/', function (req, res, next)
+{
+    db.deleteDocument(req, res);
+});
+
 
 function mycallback(req, res, next, retVal) 
 {
