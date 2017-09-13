@@ -32,12 +32,12 @@ app.get('/', function (req, res, next)
 app.get('', function (req, res) {
      res.send(GetPageDefinition());
    });
-
+*/
  app.get('/getalldocuments', function (req, res, next)
 {
     db.getAllDocuments(req, res, next);
 });
-*/
+
 
 /* app.post('/getdb',function (req, res, next)
 {
