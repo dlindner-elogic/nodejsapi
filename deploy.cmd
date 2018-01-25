@@ -107,7 +107,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
 :: 4. alter the web.config file
 echo "Updating the web.config file"
-sed -i.bak 's/\<\/system.webServer\> /\<staticContent\>\<mimeMap fileExtension=".json" mimeType="application\/json" \/\>\<\/staticContent\>\<\/system.webServer\>' wwwroot/web.config
+call :ExecuteCmd "sed -i.bak 's/<\/system.webServer> /<staticContent><mimeMap fileExtension=\".json\" mimeType=\"application\/json\" \/><\/staticContent><\/system.webServer>' wwwroot/web.config"
 ::rm -f wwwroot/web.config.bak
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
